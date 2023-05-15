@@ -7,6 +7,6 @@ import { registerSlashCommand } from './bot';
      * everything needed to run is ready.
      */
     init();
-    
+
     await registerSlashCommand();
 })();

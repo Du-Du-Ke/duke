@@ -1,4 +1,9 @@
 import 'dotenv/config';
+/**
+ * It's very important for this to be imported here so typescript
+ * can understand the `ProcessEnv` declaration in `env.ts`.
+ */
+import './env';
 
 const RequiredEnvVariables = [
     {
@@ -23,7 +28,10 @@ export const init = () => {
         // We check if `value` is defined because even though it's type is a string
         // it's possible it's undefined because of the magic we did in `env.ts`.
         if (!value || value === '') {
-            throw new Error(`Cannot start Duke: missing environment variable "${name}"`)
+            console.error(`cannot start duke: missing environment variable "${name}"`);
+            forceExit();
         }
     }
 };
+
+const forceExit = () => process.exit(1);
