@@ -11,8 +11,8 @@ const RequiredEnvVariables = [
         value: process.env.BOT_TOKEN
     },
     {
-        name: 'PORT',
-        value: process.env.PORT
+        name: 'APPLICATION_ID',
+        value: process.env.APPLICATION_ID
     }
 ] as const
 

@@ -1,5 +1,5 @@
 import { init } from './init';
-import { registerSlashCommand } from './bot';
+import { registerSlashCommand, initializeClient } from './bot';
 
 (async () => {
     /**
@@ -9,4 +9,7 @@ import { registerSlashCommand } from './bot';
     init();
 
     await registerSlashCommand();
+    
+    const client = initializeClient();
+    await client.login(process.env.BOT_TOKEN);
 })();

@@ -3,7 +3,7 @@ import { z } from 'zod';
 const env = z.object({
     BOT_TOKEN: z.string(),
     PORT: z.string(),
-    CLIENT_ID: z.string(),
+    APPLICATION_ID: z.string(),
 });
 
 env.parse(process.env);
