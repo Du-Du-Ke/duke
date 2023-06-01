@@ -1,7 +1,7 @@
 import type { Client as DiscordClient, ApplicationCommand, Collection } from 'discord.js'
 
 declare module 'discord.js' {
-  export interface Client extends DiscordClient {
-    commands: Collection<string, ApplicationCommand>
+  interface Client {
+    commands: Collection<string, () => void | Promise<void>>;
   }
 }

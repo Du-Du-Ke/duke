@@ -4,7 +4,9 @@
   "description": "Discord Bot for managing Duduke's server",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "concurrently \"tsc -w -p .\" \"node ./dist\""
+    "dev": "ts-node-dev ./src",
+    "dev2": "concurrently \"tsc -w -p .\" \"node ./dist\"",
+    "build": "tsc -p tsconfig.json"
   },
   "keywords": [],
   "author": "",

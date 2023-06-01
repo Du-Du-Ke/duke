@@ -1,21 +1,20 @@
 import { init } from './init';
-import { registerSlashCommand, initializeClient } from './client';
+import { initializeClient } from './client';
 
 /**
  * It's very important for this to be imported here so typescript
  * can understand the `ProcessEnv` declaration in `env.ts`.
  */
 import './env';
+import './discord';
 
 (async () => {
-    /**
-     * The init function must always be called first, because it ensures
-     * everything needed to run is ready.
-     */
-    init();
+  /**
+   * The init function must always be called first, because it ensures
+   * everything needed to run is ready.
+   */
+  init();
 
-    await registerSlashCommand();
-
-    const client = initializeClient();
-    await client.login(process.env.BOT_TOKEN);
+  const client = initializeClient();
+  await client.login(process.env.BOT_TOKEN);
 })();

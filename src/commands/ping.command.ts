@@ -1,13 +1,9 @@
-import { ApplicationCommand, CacheType, ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
+import { ApplicationCommand, CacheType, ChatInputCommandInteraction, Interaction, SlashCommandBuilder } from 'discord.js';
 
-import type { Command } from '../interface';
+export const slashCommand = new SlashCommandBuilder()
+  .setName('ping')
+  .setDescription('Replies with pong if Duke is online.');
 
-export const command: Command = {
-  deets: new SlashCommandBuilder()
-    .setName('ping')
-    .setDescription('Replies with pong if Duke is online.'),
-
-  execute: async (interaction: ChatInputCommandInteraction<CacheType>) => {
-    await interaction.reply
-  }
+export const handler = async (interaction: ChatInputCommandInteraction): Promise<void> => {
+  await interaction.reply('PONG!');
 };

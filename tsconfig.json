@@ -12,8 +12,8 @@
       "outDir": "./dist",
       "lib": ["es2017"],
       "resolveJsonModule": true,
-      "downlevelIteration": true,
+      "downlevelIteration": true
     },
-    "include": ["src/**/*", "src/discord.d.ts"],
+    "include": ["src/**/*"],
     "exclude": ["node_modules", "dist", "src/**/*.test.ts"]
   }
