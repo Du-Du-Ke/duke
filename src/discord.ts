@@ -1,7 +1,9 @@
-import type { Client as DiscordClient, ApplicationCommand, Collection } from 'discord.js'
+import type { Interaction, Collection } from 'discord.js'
+
+type handler = (interaction: Interaction) => Promise<void>
 
 declare module 'discord.js' {
   interface Client {
-    commands: Collection<string, () => void | Promise<void>>;
+    commands: Collection<string, handler>;
   }
 }

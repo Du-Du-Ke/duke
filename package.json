@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "ts-node-dev ./src",
     "build": "tsc -p tsconfig.json",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "deploy:commands": "ts-node ./src/scripts/deploy-commands"
   },
   "keywords": [],
   "author": "",
