@@ -1,9 +1,4 @@
 import 'dotenv/config';
-/**
- * It's very important for this to be imported here so typescript
- * can understand the `ProcessEnv` declaration in `env.ts`.
- */
-import './env';
 
 const RequiredEnvVariables = [
     {

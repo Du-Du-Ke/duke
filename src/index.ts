@@ -1,5 +1,11 @@
 import { init } from './init';
-import { registerSlashCommand, initializeClient } from './bot';
+import { registerSlashCommand, initializeClient } from './client';
+
+/**
+ * It's very important for this to be imported here so typescript
+ * can understand the `ProcessEnv` declaration in `env.ts`.
+ */
+import './env';
 
 (async () => {
     /**
@@ -9,7 +15,7 @@ import { registerSlashCommand, initializeClient } from './bot';
     init();
 
     await registerSlashCommand();
-    
+
     const client = initializeClient();
     await client.login(process.env.BOT_TOKEN);
 })();

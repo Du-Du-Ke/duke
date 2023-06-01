@@ -1,20 +1,19 @@
 {
     "compilerOptions": {
       // https://stackoverflow.com/questions/51860043/javascript-es6-typeerror-class-constructor-client-cannot-be-invoked-without-ne
-      "target": "es6",
+      "target": "ES6",
       "module": "commonjs",
       "esModuleInterop": true,
       "forceConsistentCasingInFileNames": true,
       "strict": true,
       "skipLibCheck": true,
       "sourceMap": true,
-      "declaration": true,
+      "declaration": false,
       "outDir": "./dist",
       "lib": ["es2017"],
       "resolveJsonModule": true,
       "downlevelIteration": true,
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "src/discord.d.ts"],
     "exclude": ["node_modules", "dist", "src/**/*.test.ts"]
   }
-  
