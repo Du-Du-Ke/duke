@@ -5,22 +5,20 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "ts-node-dev ./src",
-    "dev2": "concurrently \"tsc -w -p .\" \"node ./dist\"",
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.1.4",
-    "concurrently": "^8.0.1",
-    "eslint": "^8.41.0",
     "typescript": "^5.0.4"
   },
   "dependencies": {
     "discord.js": "^14.11.0",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2",
+    "eslint": "^8.41.0",
     "zod": "^3.21.4"
   }
 }
