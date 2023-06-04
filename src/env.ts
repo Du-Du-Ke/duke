@@ -1,8 +1,8 @@
+import 'dotenv/config';
 import { z } from 'zod';
 
 const env = z.object({
   BOT_TOKEN: z.string(),
-  PORT: z.string(),
   APPLICATION_ID: z.string(),
 });
 
