@@ -9,14 +9,13 @@ export const slashCommand = new SlashCommandBuilder()
   .addStringOption(option => option
     .setName('link')
     .setDescription('the URL to be shared to social media')
-    .setMaxLength(130)
     .setRequired(true)
   )
   .addStringOption(option => option
     .setName('message')
     .setDescription('the message to share on social media')
     .setMaxLength(150)
-    .setRequired(true)
+    .setRequired(false)
   );
 
 export const handler = async (interaction: ChatInputCommandInteraction): Promise<Message<boolean>> => {
