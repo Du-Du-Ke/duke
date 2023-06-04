@@ -20,7 +20,7 @@ export const slashCommand = new SlashCommandBuilder()
   );
 
 export const handler = async (interaction: ChatInputCommandInteraction): Promise<Message<boolean>> => {
-  await interaction.deferReply({ ephemeral: true });
+  await interaction.deferReply({ ephemeral: false });
   const { user, options } = interaction;
 
   const link = options.getString('link');
