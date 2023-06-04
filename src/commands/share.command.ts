@@ -25,8 +25,8 @@ export const handler = async (interaction: ChatInputCommandInteraction): Promise
   const link = options.getString('link');
   const message = options.getString('message');
 
-  if (!link || !message) {
-    return interaction.editReply('A link and message is required. Please provide these options');
+  if (!link) {
+    return interaction.editReply('a link is required for this command. Please provide these options');
   }
 
   if (!isValidURL(link)) {
@@ -38,10 +38,11 @@ export const handler = async (interaction: ChatInputCommandInteraction): Promise
     kind = ShareKind.VIDEO
   }
 
-  const sharedUrl = await handleShareLink(link, message, kind);
+  const sharedUrl = await handleShareLink(link, message || '', kind);
 
   // since we are not storing logs in a database, we can just use this logs to stdout as a way to track who sent what
   // in the event of a bad actor.
   console.log(`${user.username}#${user.discriminator} shared URL: "${link}" with message "${message}"`);
-  return interaction.editReply(`**Shared** the [${kind}](${sharedUrl}) to twitter!\n`);
+  const shareType = kind === ShareKind.MUSIC ? 'new gem' : 'music video';
+  return interaction.editReply(`<@${user.id}> shared a [${shareType}](${sharedUrl}) with the community`)
 };
