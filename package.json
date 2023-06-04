@@ -6,20 +6,20 @@
   "scripts": {
     "dev": "ts-node-dev ./src",
     "build": "tsc -p tsconfig.json",
-    "lint": "eslint .",
-    "deploy:commands": "ts-node ./src/scripts/deploy-commands"
+    "lint": "eslint -ext ts .",
+    "deployCommands": "ts-node ./src/scripts/deploy-commands"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^20.1.4",
-    "typescript": "^5.0.4"
+    "@types/node": "^20.2.5",
+    "eslint": "^8.42.0",
+    "typescript": "^5.1.3"
   },
   "dependencies": {
     "discord.js": "^14.11.0",
-    "dotenv": "^16.0.3",
-    "eslint": "^8.41.0",
+    "dotenv": "^16.1.3",
     "zod": "^3.21.4"
   }
 }
