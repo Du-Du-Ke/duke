@@ -27,6 +27,7 @@ export const initializeClient = (): Client => {
     const filePath = path.join(commandsPath, file);
     const { slashCommand, handler } = require(filePath) as { slashCommand: SlashCommandBuilder, handler: (interaction: Interaction) => Promise<void> };
 
+    console.log(`initializing handler for "${slashCommand.name}" command`)
     client.commands.set(slashCommand.name, handler)
   }
 

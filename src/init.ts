@@ -18,7 +18,6 @@ const RequiredEnvVariables = [
  * 2. Confirm connection to required external services (e.g database)
  */
 export const init = () => {
-  console.log(RequiredEnvVariables, '<===')
   for (let idx = 0; idx < RequiredEnvVariables.length; idx++) {
     const { value, name } = RequiredEnvVariables[idx]
     // We check if `value` is defined because even though it's type is a string
