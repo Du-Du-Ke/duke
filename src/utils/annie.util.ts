@@ -56,6 +56,19 @@ class AnnieClient {
     }
     return Promise.reject(`unknown track info. status: ${trackInfo.status}`)
   }
+
+  // TODO: @BolajiOlajide improve this check for annie, this is a poor man's check lol
+  canConvert(link: string): boolean {
+    const lowerCasedLink = link.toLowerCase()
+    return (
+      lowerCasedLink.startsWith('https://open.spotify.com/track') ||
+      lowerCasedLink.startsWith('https://www.open.spotify.com/track') ||
+      lowerCasedLink.startsWith('https://music.apple.com') ||
+      lowerCasedLink.startsWith('https://www.music.apple.com') ||
+      lowerCasedLink.startsWith('https://deezer.page.link') ||
+      lowerCasedLink.startsWith('https://www.deezer.page.link')
+    );
+  }
 }
 
 export default AnnieClient;

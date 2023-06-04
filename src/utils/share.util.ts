@@ -59,19 +59,21 @@ const handleMusicShare = async (link: string, message: string): Promise<string> 
     url: link,
     message
   };
-  // check if it's a URL annie can handle
 
-  try {
-    const client = new AnnieClient();
-    const trackInfo = await client.getTrackDetails(link);
-    constructionOpts = {
-      isAnnie: true,
-      url: trackInfo.annieURL,
-      track: trackInfo
+  const client = new AnnieClient();
+
+  if (client.canConvert(link)) {
+    try {
+      const trackInfo = await client.getTrackDetails(link);
+      constructionOpts = {
+        isAnnie: true,
+        url: trackInfo.annieURL,
+        track: trackInfo
+      }
+    } catch(error) {
+      // if annie fails, we default to sharing the link as is
+      console.error('error getting annie details for track', error);
     }
-  } catch(error) {
-    // if annie fails, we default to sharing the link as is
-    console.error('error getting annie details for track', error);
   }
 
   const tweet = constructMusicTweet(constructionOpts)
