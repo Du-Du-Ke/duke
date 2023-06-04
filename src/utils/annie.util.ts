@@ -31,10 +31,11 @@ class AnnieClient {
     this.baseUrl = `${process.env.ANNIE_BASE_URL}/search`;
   }
 
-  async client<T extends object, U = unknown>(method: string, payload: T): Promise<U> {
+  async client<T extends object, U extends object>(method: string, payload: T): Promise<U> {
     const result = await fetch(this.baseUrl, {
       method,
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      headers: {'Content-Type': 'application/json'}
     });
 
     const response = await result.json();
@@ -45,7 +46,7 @@ class AnnieClient {
   }
 
   async getTrackDetails(link: string): Promise<TrackDeets> {
-    const trackInfo = await this.client<AnnieSearchBody, AnnieResponse>('POST', { url: link });
+    const trackInfo = await this.client<AnnieSearchBody, AnnieResponse>('post', { url: link });
     if (trackInfo.status === 'success' && trackInfo.data.url_type === 'TRACK') {
       return Promise.resolve({
         artiste: trackInfo.data.track_details.artiste,

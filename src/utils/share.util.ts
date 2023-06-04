@@ -18,7 +18,7 @@ export enum ShareKind {
   MUSIC = 'music'
 }
 
-export const handleShareLink = async (link: string, message: string, kind: ShareKind): Promise<void> => {
+export const handleShareLink = async (link: string, message: string, kind: ShareKind): Promise<string> => {
   switch (kind) {
     case ShareKind.MUSIC:
       return handleMusicShare(link, message);
@@ -29,14 +29,15 @@ export const handleShareLink = async (link: string, message: string, kind: Share
   }
 };
 
-const handleVideoShare = async (link: string, message: string): Promise<void> => {
+const handleVideoShare = async (link: string, message: string): Promise<string> => {
   // Construct tweet
   const tweet = `Now watching:
 ${message}
 
 ${link}`;
 
-  return sendToTwitter(tweet)
+  await sendToTwitter(tweet);
+  return link;
 };
 
 type ShareDeets = {
@@ -52,7 +53,7 @@ type ShareDeets = {
   }
 }
 
-const handleMusicShare = async (link: string, message: string): Promise<void> => {
+const handleMusicShare = async (link: string, message: string): Promise<string> => {
   let constructionOpts: ShareDeets = {
     isAnnie: false,
     url: link,
@@ -74,7 +75,8 @@ const handleMusicShare = async (link: string, message: string): Promise<void> =>
   }
 
   const tweet = constructMusicTweet(constructionOpts)
-  return sendToTwitter(tweet);
+  await sendToTwitter(tweet);
+  return constructionOpts.url;
 };
 
 const constructMusicTweet = (deets: ShareDeets): string => {

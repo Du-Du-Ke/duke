@@ -39,10 +39,10 @@ export const handler = async (interaction: ChatInputCommandInteraction): Promise
     kind = ShareKind.VIDEO
   }
 
-  await handleShareLink(link, message, kind);
+  const sharedUrl = await handleShareLink(link, message, kind);
 
   // since we are not storing logs in a database, we can just use this logs to stdout as a way to track who sent what
   // in the event of a bad actor.
   console.log(`${user.username}#${user.discriminator} shared URL: "${link}" with message "${message}"`);
-  return interaction.editReply(`**Shared** the [${kind}](${link}) to twitter!\n`);
+  return interaction.editReply(`**Shared** the [${kind}](${sharedUrl}) to twitter!\n`);
 };
