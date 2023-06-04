@@ -70,7 +70,7 @@ const handleMusicShare = async (link: string, message: string): Promise<void> =>
     }
   } catch(error) {
     // if annie fails, we default to sharing the link as is
-    console.error(error);
+    console.error('error getting annie details for track', error);
   }
 
   const tweet = constructMusicTweet(constructionOpts)
