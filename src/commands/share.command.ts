@@ -1,6 +1,7 @@
 import { ChatInputCommandInteraction, Message, SlashCommandBuilder } from 'discord.js';
 
-import { isValidURL } from '../utils/url.util';
+import { isValidURL, isYoutubeVideo } from '../utils/url.util';
+import { ShareKind, handleShareLink } from '../utils/share.util';
 
 export const slashCommand = new SlashCommandBuilder()
   .setName('share')
@@ -33,6 +34,15 @@ export const handler = async (interaction: ChatInputCommandInteraction): Promise
     return interaction.editReply('the link provided isn\'t a valid URL');
   }
 
-  console.log(`${user.username}#${user.discriminator} shared URL: "${link}" with message "${message}"`)
-  return interaction.editReply('Shared!');
+  let kind = ShareKind.MUSIC
+  if (isYoutubeVideo(link)) {
+    kind = ShareKind.VIDEO
+  }
+
+  await handleShareLink(link, message, kind);
+
+  // since we are not storing logs in a database, we can just use this logs to stdout as a way to track who sent what
+  // in the event of a bad actor.
+  console.log(`${user.username}#${user.discriminator} shared URL: "${link}" with message "${message}"`);
+  return interaction.editReply(`**Shared** the [${kind}](${link}) to twitter!\n`);
 };

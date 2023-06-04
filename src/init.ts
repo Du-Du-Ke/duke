@@ -8,6 +8,10 @@ const RequiredEnvVariables = [
   {
     name: 'APPLICATION_ID',
     value: process.env.APPLICATION_ID
+  },
+  {
+    name: 'ANNIE_BASE_URL',
+    value: process.env.ANNIE_BASE_URL
   }
 ] as const
 
