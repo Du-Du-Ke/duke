@@ -22,6 +22,8 @@ interface AnnieResponse {
   }
 }
 
+type AnnieSearchBody = { url: string };
+
 class AnnieClient {
   public baseUrl: string;
 
@@ -43,7 +45,7 @@ class AnnieClient {
   }
 
   async getTrackDetails(link: string): Promise<TrackDeets> {
-    const trackInfo = await this.client<{ url: string }, AnnieResponse>('POST', { url: link });
+    const trackInfo = await this.client<AnnieSearchBody, AnnieResponse>('POST', { url: link });
     if (trackInfo.status === 'success' && trackInfo.data.url_type === 'TRACK') {
       return Promise.resolve({
         artiste: trackInfo.data.track_details.artiste,
