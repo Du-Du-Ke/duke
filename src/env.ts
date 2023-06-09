@@ -6,7 +6,8 @@ const env = z.object({
   APPLICATION_ID: z.string(),
   ANNIE_BASE_URL: z.string(),
   ZAPIER_WEBHOOK_URL: z.string(),
-  ZAPIER_WEBHOOK_SECRET: z.string()
+  ZAPIER_WEBHOOK_SECRET: z.string(),
+  PORT: z.string()
 });
 
 env.parse(process.env);
