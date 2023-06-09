@@ -82,11 +82,10 @@ const handleMusicShare = async (link: string, message: string): Promise<string> 
 };
 
 const constructMusicTweet = (deets: ShareDeets): string => {
-  // Now Listening: Hamba Juba - Lady Amar, JL SA, Cici & Murumba Pitch
   if (deets.isAnnie) {
     return `Now Listening: ${deets.track.title} - ${deets.track.artiste}
 
-  ${deets.url}`;
+${deets.url}`;
   }
   return `Mow Listening: ${deets.url}
 
