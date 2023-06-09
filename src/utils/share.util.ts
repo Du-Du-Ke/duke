@@ -85,22 +85,23 @@ const handleMusicShare = async (link: string, message: string): Promise<string> 
 };
 
 const constructMusicTweet = (deets: ShareDeets): string => {
-  let tweetHeader: string;
+  let tweet: string;
 
-  if (deets.isAnnie) {
-    tweetHeader = `Now Listening: ${deets.track.title} - ${deets.track.artiste}`
+  if (deets.message !== '') {
+    tweet = deets.message;
+  } else if (deets.isAnnie) {
+    tweet = `Now Listening: ${deets.track.title} - ${deets.track.artiste}`
   } else {
-    tweetHeader = `Now Listening: `
+    tweet = `Now Listening: `
   }
 
-  const tweetWithMsg = `${tweetHeader}
-${deets.message}
+  const tweetWithURL = `${tweet}
 ${deets.url}`
   // If the tweet including the original message added by the sharer is greater than the max
   // length of a tweet, we remove the message and share without the message
-  if (tweetWithMsg.length > MAX_TWITTER_CHAR_LENGTH) {
-    return `${tweetHeader}
+  if (tweetWithURL.length > MAX_TWITTER_CHAR_LENGTH) {
+    return `Now Listening:
 ${deets.url}`
   }
-  return tweetWithMsg
+  return tweetWithURL
 }
