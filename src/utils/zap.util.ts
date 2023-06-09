@@ -24,6 +24,9 @@ class ZapClient {
       body: payload,
       headers: {
         'Content-Type': 'application/json',
+        // THis is a naive approach at adding extra security to this webhook. This URL is a secret
+        // and is also on zapier, if the request doesn't match this secret then zapier will ignore
+        // the event.
         'X-DUKE-WEBHOOK-SECRET': this.webhookSecret
       }
     })
