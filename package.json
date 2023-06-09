@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev ./src",
     "build": "tsc -p tsconfig.json",
+    "start": "node ./src",
     "lint": "eslint -ext ts .",
     "deployCommands": "ts-node ./src/scripts/deploy-commands"
   },
