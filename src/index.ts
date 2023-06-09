@@ -5,6 +5,8 @@ import { initializeClient } from './client';
 
 
 // Create an HTTP server
+// We use this server to trick `render.com` into thinking this is a web app
+// https://community.render.com/t/web-app-discord-bot-deploy-keeps-failing/5361
 const server = http.createServer((req, res) => {
   // Set the response header
   res.setHeader('Content-Type', 'text/plain');
