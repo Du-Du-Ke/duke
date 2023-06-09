@@ -51,6 +51,7 @@ type ShareDeets = {
     artiste: string;
     title: string;
   }
+  message: string;
 }
 
 const handleMusicShare = async (link: string, message: string): Promise<string> => {
@@ -68,7 +69,8 @@ const handleMusicShare = async (link: string, message: string): Promise<string> 
       constructionOpts = {
         isAnnie: true,
         url: trackInfo.annieURL,
-        track: trackInfo
+        track: trackInfo,
+        message
       }
     } catch(error) {
       // if annie fails, we default to sharing the link as is
@@ -83,9 +85,14 @@ const handleMusicShare = async (link: string, message: string): Promise<string> 
 
 const constructMusicTweet = (deets: ShareDeets): string => {
   if (deets.isAnnie) {
-    return `Now Listening: ${deets.track.title} - ${deets.track.artiste}
-
+    const tweetWithMsg = `Now Listening: ${deets.track.title} - ${deets.track.artiste}
+${deets.message}
 ${deets.url}`;
+    if (tweetWithMsg.length > 140) {
+      return `Now Listening: ${deets.track.title} - ${deets.track.artiste}
+${deets.url}`;
+    }
+    return tweetWithMsg;
   }
   return `Mow Listening: ${deets.url}
 
