@@ -1,5 +1,6 @@
 import AnnieClient, { TrackDeets } from './annie.util';
 import { sendToTwitter } from './tweet.util';
+import { MAX_TWITTER_CHAR_LENGTH } from '../constants';
 
 /**
  * Enum for representing different types of shares in the application.
@@ -72,7 +73,7 @@ const handleMusicShare = async (link: string, message: string): Promise<string> 
         track: trackInfo,
         message
       }
-    } catch(error) {
+    } catch (error) {
       // if annie fails, we default to sharing the link as is
       console.error('error getting annie details for track', error);
     }
@@ -84,17 +85,22 @@ const handleMusicShare = async (link: string, message: string): Promise<string> 
 };
 
 const constructMusicTweet = (deets: ShareDeets): string => {
-  if (deets.isAnnie) {
-    const tweetWithMsg = `Now Listening: ${deets.track.title} - ${deets.track.artiste}
-${deets.message}
-${deets.url}`;
-    if (tweetWithMsg.length > 140) {
-      return `Now Listening: ${deets.track.title} - ${deets.track.artiste}
-${deets.url}`;
-    }
-    return tweetWithMsg;
-  }
-  return `Mow Listening: ${deets.url}
+  let tweetHeader: string;
 
-${deets.message}`;
+  if (deets.isAnnie) {
+    tweetHeader = `Now Listening: ${deets.track.title} - ${deets.track.artiste}`
+  } else {
+    tweetHeader = `Now Listening: `
+  }
+
+  const tweetWithMsg = `${tweetHeader}
+${deets.message}
+${deets.url}`
+  // If the tweet including the original message added by the sharer is greater than the max
+  // length of a tweet, we remove the message and share without the message
+  if (tweetWithMsg.length > MAX_TWITTER_CHAR_LENGTH) {
+    return `${tweetHeader}
+${deets.url}`
+  }
+  return tweetWithMsg
 }

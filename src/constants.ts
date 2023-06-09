@@ -1,0 +1,1 @@
+export const MAX_TWITTER_CHAR_LENGTH = 280;
