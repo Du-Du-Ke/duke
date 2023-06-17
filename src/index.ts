@@ -1,19 +1,5 @@
-import http from 'http';
-
 import { init } from './init';
 import { initializeClient } from './client';
-
-
-// Create an HTTP server
-// We use this server to trick `render.com` into thinking this is a web app
-// https://community.render.com/t/web-app-discord-bot-deploy-keeps-failing/5361
-const server = http.createServer((req, res) => {
-  // Set the response header
-  res.setHeader('Content-Type', 'text/plain');
-
-  // Write the response body
-  res.end('Hello, world!');
-});
 
 /**
  * It's very important for this to be imported here so typescript
@@ -31,7 +17,4 @@ import './discord';
 
   const client = initializeClient();
   await client.login(process.env.BOT_TOKEN);
-  server.listen(process.env.PORT, () => {
-    console.log(`server listening on port ${process.env.PORT}`);
-  });
 })();
