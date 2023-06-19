@@ -1,4 +1,12 @@
-import { ModalBuilder, ChatInputCommandInteraction, SlashCommandBuilder, PermissionFlagsBits, ActionRowBuilder, TextInputBuilder, TextInputStyle } from 'discord.js';
+import {
+  ModalBuilder,
+  ChatInputCommandInteraction,
+  SlashCommandBuilder,
+  PermissionFlagsBits,
+  ActionRowBuilder,
+  TextInputBuilder,
+  TextInputStyle
+} from 'discord.js';
 
 import { WebsiteOperations, ModalIDs } from '../constants';
 
@@ -74,11 +82,11 @@ const handleUpdatePlaylistLinkSubcommand =  async (interaction: ChatInputCommand
 
   // If you ever want to add new components here you'll need to add them to rows as a modal
   // cannot contain more than 5 rows.
-  const firstRow = new ActionRowBuilder<TextInputBuilder>().addComponents(appleEmbedLinkText);
-  const secondRow = new ActionRowBuilder<TextInputBuilder>().addComponents(applePlaylistLinkkText);
-  const thirdRow = new ActionRowBuilder<TextInputBuilder>().addComponents(spotifyEmbedLinkText);
-  const fourthRow = new ActionRowBuilder<TextInputBuilder>().addComponents(spotifyPlaylistLinkText);
-  const fifthRow = new ActionRowBuilder<TextInputBuilder>().addComponents(playlistTitleText);
+  const firstRow = new ActionRowBuilder<TextInputBuilder>().addComponents(playlistTitleText);
+  const secondRow = new ActionRowBuilder<TextInputBuilder>().addComponents(appleEmbedLinkText);
+  const thirdRow = new ActionRowBuilder<TextInputBuilder>().addComponents(applePlaylistLinkkText);
+  const fourthRow = new ActionRowBuilder<TextInputBuilder>().addComponents(spotifyEmbedLinkText);
+  const fifthRow = new ActionRowBuilder<TextInputBuilder>().addComponents(spotifyPlaylistLinkText);
 
   modal.addComponents(firstRow, secondRow, thirdRow, fourthRow, fifthRow);
   await interaction.showModal(modal);
