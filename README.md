@@ -60,4 +60,4 @@ You will need to run `pnpm deployCommands` every time you make an update to the 
 
 Happy Coding!
 
-A GitHub PAT is needed for the `/website update_playlist_link` command, the PAT should be given the `public_repo` and `pull_request` scope.
+A GitHub PAT is needed for the `/website update_playlist_link` command, the PAT should be given the `public_repo` scope.
