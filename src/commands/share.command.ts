@@ -44,5 +44,5 @@ export const handler = async (interaction: ChatInputCommandInteraction): Promise
   // in the event of a bad actor.
   console.log(`${user.username}#${user.discriminator} shared URL: "${link}" with message "${message}"`);
   const shareType = kind === ShareKind.MUSIC ? 'new gem' : 'music video';
-  return interaction.editReply(`<@${user.id}> shared a [${shareType}](${sharedUrl}) with the community`)
+  return interaction.editReply(`<@${user.id}> shared a [${shareType}](${sharedUrl}) with the community`);
 };

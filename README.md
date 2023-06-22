@@ -6,6 +6,7 @@ This bot is designed to manage the Du-Du-Ke's Discord server. It currently suppo
 
 - `/ping` - Checks if the bot is online. The bot will respond with "PONG".
 - `/share` - Shares music or video to Du-Du-Ke's social media channels.
+- `/website` - Manage DuDuKe's website (this command requires admin privilege on Discord).
 
 ## Setup
 
@@ -58,3 +59,5 @@ To add a new slash command:
 You will need to run `pnpm deployCommands` every time you make an update to the slash command. However, you do not need to do this if you're only updating the command's handler function.
 
 Happy Coding!
+
+A GitHub PAT is needed for the `/website update_playlist_link` command, the PAT should be given the `public_repo` scope.
