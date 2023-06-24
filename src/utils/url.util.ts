@@ -48,3 +48,16 @@ export const isYoutubeVideo = (url: string): boolean => {
   var pattern = /^(https?:\/\/)?((www\.)?youtube\.com\/watch\?v=|youtu\.be\/)[a-zA-Z0-9\-_]+$/i;
   return pattern.test(url);
 };
+
+export const generateSpotifyEmbedLink = (url: string): string => {
+  const u = new URL(url);
+  u.pathname = `/embed${u.pathname}`;
+  u.search = '';
+  return u.href;
+};
+
+export const generateAppleMusicEmbedLink = (url: string): string => {
+  const u = new URL(url);
+  u.hostname = 'embed.music.apple.com';
+  return u.href;
+}
