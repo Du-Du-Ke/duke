@@ -48,7 +48,7 @@ const handleUpdatePlaylistLinkSubcommand =  async (interaction: ChatInputCommand
     .setPlaceholder('Enter the title of the playlist ...')
     .setRequired(true);
 
-  const applePlaylistLinkkText = new TextInputBuilder()
+  const applePlaylistLinkText = new TextInputBuilder()
     .setStyle(TextInputStyle.Short)
     .setCustomId('applePlaylistLink')
     // Should not be more than 45 characters
@@ -66,7 +66,7 @@ const handleUpdatePlaylistLinkSubcommand =  async (interaction: ChatInputCommand
 
   // A modal can't have more than 5 rows, FYI.
   const firstRow = new ActionRowBuilder<TextInputBuilder>().addComponents(playlistTitleText);
-  const secondRow = new ActionRowBuilder<TextInputBuilder>().addComponents(applePlaylistLinkkText);
+  const secondRow = new ActionRowBuilder<TextInputBuilder>().addComponents(applePlaylistLinkText);
   const thirdRow = new ActionRowBuilder<TextInputBuilder>().addComponents(spotifyPlaylistLinkText);
 
   modal.addComponents(firstRow, secondRow, thirdRow);
