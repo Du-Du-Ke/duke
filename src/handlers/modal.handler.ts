@@ -2,6 +2,7 @@ import { ModalSubmitInteraction } from 'discord.js';
 
 import { ModalIDs } from '../constants';
 import GitClient from '../utils/git.util';
+import { generateSpotifyEmbedLink, generateAppleMusicEmbedLink } from '../utils/url.util'
 
 export const handleModals = async (interaction: ModalSubmitInteraction) => {
   const gitClient = new GitClient(
@@ -20,13 +21,12 @@ export const handleModals = async (interaction: ModalSubmitInteraction) => {
 
 const handlePlaylistLinkUpdate = async (interaction: ModalSubmitInteraction, gitClient: GitClient) => {
   await interaction.deferReply({ ephemeral: false });
-  const appleEmbedLink = interaction.fields.getTextInputValue('appleEmbedLink');
-  const spotifyEmbedLink = interaction.fields.getTextInputValue('spotifyEmbedLink');
+
   const spotifyPlaylistLink = interaction.fields.getTextInputValue('spotifyPlaylistLink');
   const applePlaylistLink = interaction.fields.getTextInputValue('applePlaylistLink');
   const playlistTitle = interaction.fields.getTextInputValue('playlistTitle');
 
-  for (let link of [appleEmbedLink, spotifyEmbedLink, spotifyPlaylistLink, applePlaylistLink]) {
+  for (let link of [spotifyPlaylistLink, applePlaylistLink]) {
     try {
       new URL(link);
     } catch {
@@ -57,6 +57,9 @@ const handlePlaylistLinkUpdate = async (interaction: ModalSubmitInteraction, git
 
   // Extract the content to be updated
   const contentToUpdate = htmlString.substring(startIndex, endIndex);
+
+  const appleEmbedLink = generateAppleMusicEmbedLink(applePlaylistLink);
+  const spotifyEmbedLink = generateSpotifyEmbedLink(spotifyPlaylistLink);
 
   // Update the desired content
   const updatedContent = contentToUpdate

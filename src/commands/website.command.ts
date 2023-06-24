@@ -48,28 +48,12 @@ const handleUpdatePlaylistLinkSubcommand =  async (interaction: ChatInputCommand
     .setPlaceholder('Enter the title of the playlist ...')
     .setRequired(true);
 
-  const appleEmbedLinkText = new TextInputBuilder()
-    .setStyle(TextInputStyle.Short)
-    .setCustomId('appleEmbedLink')
-    // Should not be more than 45 characters
-    .setLabel('What\'s the apple music embed link?')
-    .setPlaceholder('Enter the playlist embed link for apple music ...')
-    .setRequired(true);
-
   const applePlaylistLinkkText = new TextInputBuilder()
     .setStyle(TextInputStyle.Short)
     .setCustomId('applePlaylistLink')
     // Should not be more than 45 characters
     .setLabel('What\'s the apple music link?')
     .setPlaceholder('Enter the apple music playlist link ...')
-    .setRequired(true);
-
-  const spotifyEmbedLinkText = new TextInputBuilder()
-    .setStyle(TextInputStyle.Short)
-    .setCustomId('spotifyEmbedLink')
-    // Should not be more than 45 characters
-    .setLabel('What\'s the spotify embed link?')
-    .setPlaceholder('Enter the playlist embed link for spotify ...')
     .setRequired(true);
 
   const spotifyPlaylistLinkText = new TextInputBuilder()
@@ -80,15 +64,12 @@ const handleUpdatePlaylistLinkSubcommand =  async (interaction: ChatInputCommand
     .setPlaceholder('Enter the spotify playlist link ...')
     .setRequired(true);
 
-  // If you ever want to add new components here you'll need to add them to rows as a modal
-  // cannot contain more than 5 rows.
+  // A modal can't have more than 5 rows, FYI.
   const firstRow = new ActionRowBuilder<TextInputBuilder>().addComponents(playlistTitleText);
-  const secondRow = new ActionRowBuilder<TextInputBuilder>().addComponents(appleEmbedLinkText);
-  const thirdRow = new ActionRowBuilder<TextInputBuilder>().addComponents(applePlaylistLinkkText);
-  const fourthRow = new ActionRowBuilder<TextInputBuilder>().addComponents(spotifyEmbedLinkText);
-  const fifthRow = new ActionRowBuilder<TextInputBuilder>().addComponents(spotifyPlaylistLinkText);
+  const secondRow = new ActionRowBuilder<TextInputBuilder>().addComponents(applePlaylistLinkkText);
+  const thirdRow = new ActionRowBuilder<TextInputBuilder>().addComponents(spotifyPlaylistLinkText);
 
-  modal.addComponents(firstRow, secondRow, thirdRow, fourthRow, fifthRow);
+  modal.addComponents(firstRow, secondRow, thirdRow);
   await interaction.showModal(modal);
 
   await interaction.followUp({ ephemeral: true, content: '[duduke.fm](https://duduke.fm) will be updated shortly with the playlist .' });
